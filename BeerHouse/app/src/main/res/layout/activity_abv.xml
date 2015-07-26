@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_large"
+    tools:context="beerhouse.lucas.mobile.pucminas.com.beerhouse.ABVActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/borda_1"
+        android:orientation="vertical">
+
+        <TextView android:text="@string/lbl_abv_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_large"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold|italic"
+            android:textSize="18dp"
+            android:textColor="#FF8C00"/>
+
+        <TextView android:text="@string/lbl_abv_di"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edt_abv_di"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:inputType="numberDecimal"
+            android:ems="4"/>
+
+        <TextView android:text="@string/lbl_abv_df"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edt_abv_df"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:inputType="numberDecimal"
+            android:ems="4" />
+
+        <TextView android:text="@string/lbl_abv_calculado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edt_abv_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:editable="false"/>
+
+        <Button
+            android:id="@+id/btn_logar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="calcular"
+            android:text="@string/lbl_abv_calcular" />
+
+        <Button
+            android:id="@+id/btn_cadastrar_receita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="cadastrar"
+            android:text="@string/lbl_abv_cadastrar_receita"
+            android:editable="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>
