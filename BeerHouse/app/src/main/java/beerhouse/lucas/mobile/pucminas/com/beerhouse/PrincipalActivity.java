@@ -1,5 +1,6 @@
 package beerhouse.lucas.mobile.pucminas.com.beerhouse;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +13,7 @@ import android.view.View;
 import beerhouse.lucas.mobile.pucminas.com.beerhouse.util.MensagemUtil;
 
 
-public class PrincipalActivity extends ActionBarActivity {
+public class PrincipalActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,5 +68,10 @@ public class PrincipalActivity extends ActionBarActivity {
     public void calcularABV(View view){
         Intent itABV = new Intent(PrincipalActivity.this, ABVActivity.class);
         startActivity(itABV);
+    }
+
+    public void listarReceitas(View view){
+        Intent itListarReceitas = new Intent(PrincipalActivity.this, ListarReceitaActivity.class);
+        startActivity(itListarReceitas);
     }
 }

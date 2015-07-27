@@ -13,21 +13,29 @@
         android:layout_weight="1"
         android:background="@drawable/borda_1"
         android:orientation="horizontal">
-
+<!--
         <Button
             android:id="@+id/btnListar"
             style="@style/BotaoDash"
             android:drawableTop="@drawable/about"
             android:text="@string/lbl_principal_sobre"
             android:onClick="sobre"/>
+-->
 
         <Button
-            android:id="@+id/btnPesquisar"
+            android:id="@+id/btnListar"
             style="@style/BotaoDash"
             android:drawableTop="@drawable/search_click_img"
             android:textColor="@drawable/search_click_color"
-            android:text="@string/lbl_principal_tabela"
-            android:onClick="exibirTabela"/>
+            android:text="@string/lbl_principal_listar"
+            android:onClick="listarReceitas"/>
+
+        <Button
+            style="@style/BotaoDash"
+            android:drawableTop="@drawable/beer64"
+            android:text="@string/lbl_principal_abv"
+            android:onClick="calcularABV"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -38,10 +46,11 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/btnPesquisar"
             style="@style/BotaoDash"
-            android:drawableTop="@drawable/beer64"
-            android:text="@string/lbl_principal_abv"
-            android:onClick="calcularABV"/>
+            android:drawableTop="@drawable/browser64"
+            android:text="@string/lbl_principal_tabela"
+            android:onClick="exibirTabela"/>
 
         <Button
             style="@style/BotaoDash"

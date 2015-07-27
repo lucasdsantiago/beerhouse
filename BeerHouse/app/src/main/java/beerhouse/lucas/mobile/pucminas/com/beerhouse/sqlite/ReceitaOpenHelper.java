@@ -1,5 +1,7 @@
 package beerhouse.lucas.mobile.pucminas.com.beerhouse.sqlite;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -43,6 +45,30 @@ public class ReceitaOpenHelper extends SQLiteOpenHelper {
 		values.put("IND_TIPO", String.valueOf(receitaDTO.getTipoFamilia()));
 
 		db.insert("TB_RECEITA", null, values);
+	}
+
+	public List<ReceitaDTO> listar() {
+		List<ReceitaDTO> lista = new ArrayList<>();
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(true, "TB_RECEITA", null, null, null, null, null, "ID_RECEITA", null, null);
+		while (cursor.moveToNext()) {
+			ReceitaDTO receitaDTO = new ReceitaDTO();
+			receitaDTO.setId(cursor.getInt(cursor.getColumnIndex("ID_RECEITA")));
+			receitaDTO.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
+			receitaDTO.setValorABV(cursor.getString(cursor.getColumnIndex("VALOR_ABV")));
+			receitaDTO.setTipoFamilia(cursor.getString(cursor.getColumnIndex("IND_TIPO")).charAt(0));
+
+			lista.add(receitaDTO);
+		}
+
+		return lista;
+	}
+
+	public void deletarTodos() {
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		db.delete("TB_RECEITA", null, null);
 	}
 
 
