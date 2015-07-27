@@ -61,11 +61,18 @@
             android:editable="false"/>
 
         <Button
-            android:id="@+id/btn_logar"
+            android:id="@+id/btn_calcular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="calcular"
             android:text="@string/lbl_abv_calcular" />
+
+        <Button
+            android:id="@+id/btn_limpar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="limpar"
+            android:text="@string/lbl_abv_limpar" />
 
         <Button
             android:id="@+id/btn_cadastrar_receita"

@@ -47,6 +47,9 @@
             android:ems="10"
             android:editable="false"/>
 
+        <TextView android:text="@string/lbl_cadastrar_receita_tipo_familia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <RadioGroup android:layout_width="fill_parent"
             android:layout_height="wrap_content" android:orientation="horizontal"
@@ -75,13 +78,6 @@
             android:layout_height="wrap_content"
             android:onClick="cadastrarReceita"
             android:text="@string/lbl_cadastrar_receita_cadastrar" />
-
-        <Button
-            android:id="@+id/btn_pagina_inicial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="paginaInicial"
-            android:text="@string/lbl_receita_pagina_inicial" />
 
     </LinearLayout>
 

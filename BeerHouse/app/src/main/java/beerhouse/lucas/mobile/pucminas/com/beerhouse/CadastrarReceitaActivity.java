@@ -49,6 +49,7 @@ public class CadastrarReceitaActivity extends Activity {
 
         // set campo com o parametro passado
         edtAbv.setText(valorAbv);
+        edtAbv.setEnabled(false);
     }
 
     @Override
@@ -74,11 +75,40 @@ public class CadastrarReceitaActivity extends Activity {
     }
 
     public void cadastrarReceita(View view){
+
         String nome = edtNome.getText().toString();
+        int checkedRadioButton = radioGroupTipoFamilia.getCheckedRadioButtonId();
+        String msgObrigatoriedade = receitaBO.validarObrigatoriedadeCampos(nome, checkedRadioButton);
+        if(msgObrigatoriedade == null){
+            char radioSelecionado = 0;
+            switch (checkedRadioButton) {
+                case R.id.radio_cadastrar_receita_ale:
+                    radioSelecionado = 'A';
+                    break;
+                case R.id.radio_cadastrar_receita_lager:
+                    radioSelecionado = 'L';
+                    break;
+                case R.id.radio_cadastrar_receita_hibrido:
+                    radioSelecionado = 'H';
+                    break;
+            }
+
+            // add
+            ReceitaDTO receitaDTO = new ReceitaDTO();
+            receitaDTO.setNome(edtNome.getText().toString());
+            receitaDTO.setValorABV(edtAbv.getText().toString());
+            receitaDTO.setTipoFamilia(radioSelecionado);
+
+            ValidacaoReceita resultado = receitaBO.castrarReceita(receitaDTO);
+            MensagemUtil.addMsg(this, resultado.getMensagem());
+        }
+        else{
+            MensagemUtil.addMsg(CadastrarReceitaActivity.this, msgObrigatoriedade);
+        }
+        /*
         if(nome.isEmpty())
             MensagemUtil.addMsg(CadastrarReceitaActivity.this, getString(R.string.msg_cadastrar_receita_obrigatorio_nome));
         else {
-            int checkedRadioButton = radioGroupTipoFamilia.getCheckedRadioButtonId();
             if(checkedRadioButton >= 0) {
                 char radioSelecionado = 0;
                 switch (checkedRadioButton) {
@@ -102,20 +132,11 @@ public class CadastrarReceitaActivity extends Activity {
                 ValidacaoReceita resultado = receitaBO.castrarReceita(receitaDTO);
                 MensagemUtil.addMsg(this, resultado.getMensagem());
 
-                Intent itPrincipal = new Intent(CadastrarReceitaActivity.this, PrincipalActivity.class);
-                startActivity(itPrincipal);
-                finish();
 
             } else
                 MensagemUtil.addMsg(CadastrarReceitaActivity.this, getString(R.string.msg_cadastrar_receita_obrigatorio_tipo));
         }
+        */
     }
-
-    public void paginaInicial(View view){
-        Intent itPrincipal = new Intent(CadastrarReceitaActivity.this, PrincipalActivity.class);
-        startActivity(itPrincipal);
-        finish();
-    }
-
 
 }

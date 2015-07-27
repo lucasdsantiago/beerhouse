@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import beerhouse.lucas.mobile.pucminas.com.beerhouse.bo.ABVBO;
 import beerhouse.lucas.mobile.pucminas.com.beerhouse.util.MensagemUtil;
@@ -25,6 +26,7 @@ public class ABVActivity extends Activity {
     private EditText edtDensidadeFinal;
     private EditText edtValorABV;
     private Button btnCadastrar;
+    private ABVBO abvBO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,12 @@ public class ABVActivity extends Activity {
         edtDensidadeInicial = (EditText) findViewById(R.id.edt_abv_di);
         edtDensidadeFinal = (EditText) findViewById(R.id.edt_abv_df);
         edtValorABV = (EditText) findViewById(R.id.edt_abv_valor);
-        edtValorABV.setKeyListener(null);
+        //edtValorABV.setKeyListener(null);
+        edtValorABV.setEnabled(false);
         btnCadastrar = (Button) findViewById(R.id.btn_cadastrar_receita);
         btnCadastrar.setEnabled(false);
+
+        abvBO = new ABVBO(ABVActivity.this);
     }
 
     @Override
@@ -63,48 +68,30 @@ public class ABVActivity extends Activity {
 
     public void calcular(View view){
 
-        //new CalcularABVAsync().execute();
-
         String diStr = edtDensidadeInicial.getText().toString();
-        String doStr = edtDensidadeFinal.getText().toString();
+        String dfStr = edtDensidadeFinal.getText().toString();
 
-        boolean isObrigatorioFault = false;
+        String msgObrigatorio = abvBO.validarObrigatoriedadeCampos(diStr, dfStr);
 
-        if(diStr.isEmpty()) {
-            isObrigatorioFault = true;
-            MensagemUtil.addMsg(ABVActivity.this, getString(R.string.msg_abv_obrigatorio_di));
-        }
-        else if(doStr.isEmpty()) {
-            isObrigatorioFault = true;
-            MensagemUtil.addMsg(ABVActivity.this, getString(R.string.msg_abv_obrigatorio_df));
-        }
-
-        if(!isObrigatorioFault) {
-
-            boolean isFault = false;
-            BigDecimal valorDI = new BigDecimal(diStr).setScale(3);
-            BigDecimal valorDO = new BigDecimal(doStr).setScale(3);
-
-            if (valorDO.compareTo(valorDI) >= 0) {
-                isFault = true;
-                MensagemUtil.addMsg(ABVActivity.this, getString(R.string.msg_abv_calculo_erro_di_maior_df));
-            }
-            else if (valorDI.compareTo(new BigDecimal(1.100)) >= 0 || valorDO.compareTo(new BigDecimal(1.000)) <=  0) {
-                isFault = true;
-                MensagemUtil.addMsg(ABVActivity.this, getString(R.string.msg_abv_calculo_erro_di_df_faixa));
-            }
-
-            if(!isFault){
-                BigDecimal valorABV = valorDI.subtract(valorDO).multiply(new BigDecimal(131));
-                edtValorABV.setText(valorABV.toString());
+        if(msgObrigatorio == null){
+            BigDecimal valorDI = new BigDecimal(diStr).setScale(3, RoundingMode.UP);
+            BigDecimal valorDF = new BigDecimal(dfStr).setScale(3, RoundingMode.UP);
+            String msgValidacao = abvBO.validarCampos(valorDI, valorDF);
+            if(msgValidacao == null){
+                BigDecimal valorABVCalculado = abvBO.calculaValorABV(valorDI, valorDF);
+                edtValorABV.setText(valorABVCalculado.toString());
                 btnCadastrar.setEnabled(true);
                 MensagemUtil.addMsg(ABVActivity.this, getString(R.string.msg_abv_calculo_sucesso));
             }
-            else edtValorABV.setText("");
+            else{
+                MensagemUtil.addMsg(ABVActivity.this, msgValidacao);
+                edtValorABV.setText("");
+            }
         }
-        else edtValorABV.setText("");
-
-
+        else{
+            MensagemUtil.addMsg(ABVActivity.this, msgObrigatorio);
+            edtValorABV.setText("");
+        }
     }
 
     public void cadastrar(View view){
@@ -122,38 +109,10 @@ public class ABVActivity extends Activity {
                 });
     }
 
-    private class CalcularABVAsync extends AsyncTask<Void, Void, String> {
-
-        private ProgressDialog progressDialog = new ProgressDialog(ABVActivity.this);
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog.setMessage("Carregando...");
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String diStr = edtDensidadeInicial.getText().toString();
-            String doStr = edtDensidadeFinal.getText().toString();
-
-            ABVBO abvBO = new ABVBO(ABVActivity.this);
-            String retornoObrigatorio = abvBO.validarObrigatoriedadeCampos(diStr, doStr);
-            if(retornoObrigatorio.isEmpty())
-                return abvBO.validarCampos(diStr, doStr);
-            return retornoObrigatorio;
-        }
-
-        @Override
-        protected void onPostExecute(String msg) {
-            progressDialog.dismiss();
-
-            if (msg == null) {
-                MensagemUtil.addMsg(ABVActivity.this, getString(R.string.msg_abv_calculo_sucesso));
-            } else {
-                MensagemUtil.addMsg(ABVActivity.this, msg);
-            }
-        }
+    public void limpar(View view){
+        edtDensidadeInicial.setText("");
+        edtDensidadeFinal.setText("");
+        edtValorABV.setText("");
+        btnCadastrar.setEnabled(false);
     }
 }

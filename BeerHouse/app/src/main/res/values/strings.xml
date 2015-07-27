@@ -24,6 +24,7 @@
     <string name="lbl_abv_df">Densidade Final (DF)</string>
     <string name="lbl_abv_calculado">Porcentagem de Alcool (ABV)</string>
     <string name="lbl_abv_calcular">Calcular</string>
+    <string name="lbl_abv_limpar">Limpar</string>
     <string name="lbl_abv_cadastrar_receita">Cadastrar Receita</string>
     <string name="msg_abv_obrigatorio_di">Densidade Inicial é obrigatório</string>
     <string name="msg_abv_obrigatorio_df">Densidade Final é obrigatório</string>
@@ -41,10 +42,12 @@
     <string name="lbl_receita_pagina_inicial">Página Inicial</string>
     <string name="lbl_cadastrar_receita_titulo">Cadastrar Receita</string>
     <string name="lbl_cadastrar_receita_nome">Nome</string>
+    <string name="lbl_cadastrar_receita_tipo_familia">Tipo Família</string>
     <string name="lbl_cadastrar_receita_ale">Ale</string>
     <string name="lbl_cadastrar_receita_lager">Lager</string>
     <string name="lbl_cadastrar_receita_hibrido">Híbrido</string>
     <string name="lbl_cadastrar_receita_cadastrar">Cadastrar</string>
+    <string name="lbl_cadastrar_receita_limpar">Limpar</string>
     <string name="msg_cadastrar_receita_obrigatorio_nome">Nome é obrigatório</string>
     <string name="msg_cadastrar_receita_obrigatorio_tipo">Tipo Família é obrigatório</string>
     <string name="msg_cadastrar_receita_sucesso">Receita cadastrada com sucesso.</string>

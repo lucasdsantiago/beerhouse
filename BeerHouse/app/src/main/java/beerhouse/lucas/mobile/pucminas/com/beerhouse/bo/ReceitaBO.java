@@ -22,6 +22,17 @@ public class ReceitaBO {
         this.receitaOpenHelper = new ReceitaOpenHelper(context);
     }
 
+    public String validarObrigatoriedadeCampos(String nome, int radioSelecionado){
+        if(nome.isEmpty()) {
+            return context.getString(R.string.msg_cadastrar_receita_obrigatorio_nome);
+        }
+        else if(radioSelecionado < 0) {
+            return context.getString(R.string.msg_cadastrar_receita_obrigatorio_tipo);
+        }
+
+        return null;
+    }
+
     public ValidacaoReceita castrarReceita(ReceitaDTO receitaDTO) {
         ValidacaoReceita retorno = new ValidacaoReceita();
         receitaOpenHelper.cadastrar(receitaDTO);
