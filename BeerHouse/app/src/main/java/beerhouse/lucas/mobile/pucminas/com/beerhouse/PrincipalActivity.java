@@ -40,6 +40,12 @@ public class PrincipalActivity extends Activity {
             return true;
         }
 
+        if (id == R.id.action_sobre){
+            Intent itSobre = new Intent(PrincipalActivity.this, SobreActivity.class);
+            startActivity(itSobre);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

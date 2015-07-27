@@ -33,10 +33,9 @@ public class ListarReceitaActivity extends Activity {
 
     private void listarReceitas(){
 
-        //receitaBO.deletarTodos();
         receitaDTOList = receitaBO.listarPessoas();
         if(receitaDTOList.isEmpty()) {
-            MensagemUtil.addMsgOk(ListarReceitaActivity.this, getString(R.string.lbl_principal_listar),getString(R.string.lbl_listar_receita_nenhuma_receita_encontrada), R.drawable.about);
+            MensagemUtil.addMsgOk(ListarReceitaActivity.this, getString(R.string.lbl_principal_listar),getString(R.string.msg_listar_receita_nenhuma_receita_encontrada), R.drawable.about);
         }else{
             lvReceitas = (ListView) findViewById(R.id.lst_receitas);
 
