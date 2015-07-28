@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".CadastrarReceitaActivity"
-            android:label="@string/title_activity_cadastrar_receita" >
+            android:label="@string/title_activity_cadastrar_receita"
             android:parentActivityName=".PrincipalActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
