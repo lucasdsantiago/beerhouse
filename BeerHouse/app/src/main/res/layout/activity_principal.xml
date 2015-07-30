@@ -3,20 +3,19 @@
     style="@style/LayoutCorpoFora"
     tools:context=".PrincipalActivity">
 
+    <LinearLayout style="@style/LayoutCorpoDentro">
+
+        <TextView android:text="@string/lbl_principal_titulo"
+            style="@style/TituloTela"/>
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/borda_1"
         android:orientation="horizontal">
-<!--
-        <Button
-            android:id="@+id/btnListar"
-            style="@style/BotaoDash"
-            android:drawableTop="@drawable/about"
-            android:text="@string/lbl_principal_sobre"
-            android:onClick="sobre"/>
--->
 
         <Button
             android:id="@+id/btnListar"
@@ -53,6 +52,13 @@
             android:drawableTop="@drawable/logout64"
             android:text="@string/lbl_principal_sair"
             android:onClick="logout" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/LayoutCorpoDentro">
+
+        <TextView android:text="@string/lbl_principal_rodape"
+            style="@style/TituloTela"/>
+
     </LinearLayout>
 
 </LinearLayout>

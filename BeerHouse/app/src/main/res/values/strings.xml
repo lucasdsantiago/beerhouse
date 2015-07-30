@@ -10,6 +10,8 @@
     <string name="hello_world">Hello world!</string>
 
     <!-- Tela Principal Menu -->
+    <string name="lbl_principal_titulo">App Beer House - Trabalho Final</string>
+    <string name="lbl_principal_rodape">Desenvolvido por Lucas Dias Santiago</string>
     <string name="lbl_principal_sobre">Sobre</string>
     <string name="lbl_principal_listar">Receitas</string>
     <string name="lbl_principal_tabela">Tabela</string>
