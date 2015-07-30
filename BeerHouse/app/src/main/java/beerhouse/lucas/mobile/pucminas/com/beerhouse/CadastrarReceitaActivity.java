@@ -101,42 +101,13 @@ public class CadastrarReceitaActivity extends Activity {
 
             ValidacaoReceita resultado = receitaBO.castrarReceita(receitaDTO);
             MensagemUtil.addMsg(this, resultado.getMensagem());
+
+            // finaliza activity
+            onBackPressed();
         }
         else{
             MensagemUtil.addMsg(CadastrarReceitaActivity.this, msgObrigatoriedade);
         }
-        /*
-        if(nome.isEmpty())
-            MensagemUtil.addMsg(CadastrarReceitaActivity.this, getString(R.string.msg_cadastrar_receita_obrigatorio_nome));
-        else {
-            if(checkedRadioButton >= 0) {
-                char radioSelecionado = 0;
-                switch (checkedRadioButton) {
-                    case R.id.radio_cadastrar_receita_ale:
-                        radioSelecionado = 'A';
-                        break;
-                    case R.id.radio_cadastrar_receita_lager:
-                        radioSelecionado = 'L';
-                        break;
-                    case R.id.radio_cadastrar_receita_hibrido:
-                        radioSelecionado = 'H';
-                        break;
-                }
-
-                // add
-                ReceitaDTO receitaDTO = new ReceitaDTO();
-                receitaDTO.setNome(edtNome.getText().toString());
-                receitaDTO.setValorABV(edtAbv.getText().toString());
-                receitaDTO.setTipoFamilia(radioSelecionado);
-
-                ValidacaoReceita resultado = receitaBO.castrarReceita(receitaDTO);
-                MensagemUtil.addMsg(this, resultado.getMensagem());
-
-
-            } else
-                MensagemUtil.addMsg(CadastrarReceitaActivity.this, getString(R.string.msg_cadastrar_receita_obrigatorio_tipo));
-        }
-        */
     }
 
 }
