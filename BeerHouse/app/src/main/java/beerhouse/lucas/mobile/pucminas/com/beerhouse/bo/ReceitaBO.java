@@ -22,6 +22,12 @@ public class ReceitaBO {
         this.receitaOpenHelper = new ReceitaOpenHelper(context);
     }
 
+    /**
+     * Metodo que verifica se os campos foram preenchidos.
+     * @param nome nome da receita
+     * @param radioSelecionado tipo da familia da cerveja
+     * @return
+     */
     public String validarObrigatoriedadeCampos(String nome, int radioSelecionado){
         if(nome.isEmpty()) {
             return context.getString(R.string.msg_cadastrar_receita_obrigatorio_nome);
@@ -33,6 +39,11 @@ public class ReceitaBO {
         return null;
     }
 
+    /**
+     * Aciona o metodo de persistencia.
+     * @param receitaDTO
+     * @return
+     */
     public ValidacaoReceita castrarReceita(ReceitaDTO receitaDTO) {
         ValidacaoReceita retorno = new ValidacaoReceita();
         receitaOpenHelper.cadastrar(receitaDTO);
@@ -42,7 +53,11 @@ public class ReceitaBO {
         return retorno;
     }
 
-    public List<ReceitaDTO> listarPessoas() {
+    /**
+     * Metodo que recupera as receitas cadastradas no SQLite.
+     * @return
+     */
+    public List<ReceitaDTO> listarReceitas() {
         return receitaOpenHelper.listar();
     }
 

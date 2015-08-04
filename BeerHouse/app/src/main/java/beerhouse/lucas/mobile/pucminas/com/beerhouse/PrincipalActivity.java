@@ -40,6 +40,7 @@ public class PrincipalActivity extends Activity {
             return true;
         }
 
+        // aciona a Tela Sobre
         if (id == R.id.action_sobre){
             Intent itSobre = new Intent(PrincipalActivity.this, SobreActivity.class);
             startActivity(itSobre);
@@ -50,6 +51,11 @@ public class PrincipalActivity extends Activity {
     }
 
 
+    /**
+     * Acionado atraves do menu Sair. Exibe uma mensagem de confirmacao.
+     * Caso o usuario confirme, a aplicacao e encerrada.
+     * @param view
+     */
     public void logout(View view){
         MensagemUtil.addMsgConfirm(PrincipalActivity.this, getString(R.string.lbl_principal_sair),
                 getString(R.string.msg_logout), R.drawable.logout, new DialogInterface.OnClickListener() {
@@ -60,22 +66,30 @@ public class PrincipalActivity extends Activity {
                 });
     }
 
+    /**
+     * Acionado atraves do menu Tabela. Aciona a Internet para visualizacao
+     * da Tabela Periodica das Cervejas.
+     * @param view
+     */
     public void exibirTabela(View view){
         Uri uri = Uri.parse("http://www.tabeladacerveja.com.br/");
         Intent itNavegar = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(itNavegar);
     }
 
-    public void sobre(View view){
-        Intent itSobre = new Intent(PrincipalActivity.this, SobreActivity.class);
-        startActivity(itSobre);
-    }
-
+    /**
+     * Acionado Através do Menu ABV que calcula o teor alcoolico da cerveja.
+     * @param view
+     */
     public void calcularABV(View view){
         Intent itABV = new Intent(PrincipalActivity.this, ABVActivity.class);
         startActivity(itABV);
     }
 
+    /**
+     * Acionado atreaves do Menu Listar que exibe as receitas cadastradas.
+     * @param view
+     */
     public void listarReceitas(View view){
         Intent itListarReceitas = new Intent(PrincipalActivity.this, ListarReceitaActivity.class);
         startActivity(itListarReceitas);

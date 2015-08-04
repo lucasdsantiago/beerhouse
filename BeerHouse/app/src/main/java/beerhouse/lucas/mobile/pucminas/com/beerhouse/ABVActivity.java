@@ -66,6 +66,11 @@ public class ABVActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Método que calcula o teor alcoolico da cerveja atraves da
+     * Densidade Incial e Final informada.
+     * @param view
+     */
     public void calcular(View view){
 
         String diStr = edtDensidadeInicial.getText().toString();
@@ -94,6 +99,12 @@ public class ABVActivity extends Activity {
         }
     }
 
+    /**
+     * Método que exibe a mensagem de confirmacao se o usuario deseja cadastrar
+     * a receita com o teor alcoolico calculado. Caso afirmativo, o valor e passado
+     * como parametro para a Tela de Cadastro.
+     * @param view
+     */
     public void cadastrar(View view){
         MensagemUtil.addMsgConfirm(ABVActivity.this, getString(R.string.lbl_abv_cadastrar_receita),
                 getString(R.string.msg_abv_cadastrar_receita_confirmacao), R.drawable.beer32, new DialogInterface.OnClickListener() {
@@ -109,6 +120,11 @@ public class ABVActivity extends Activity {
                 });
     }
 
+    /**
+     * Metodo acionado atraves do botao Limpar na qual limpa todos os campos
+     * da Tela e desativa o botao Cadastrar.
+     * @param view
+     */
     public void limpar(View view){
         edtDensidadeInicial.setText("");
         edtDensidadeFinal.setText("");

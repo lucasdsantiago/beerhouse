@@ -31,9 +31,14 @@ public class ListarReceitaActivity extends Activity {
         listarReceitas();
     }
 
+    /**
+     * Método que pesquisa no banco de dados as receitas atraves da classe de negocio
+     * ReceitaBO e adiciona no ListView o resultado.
+     * Caso nao tenha receita cadastrada eh exibida a mensagem informativa.
+     */
     private void listarReceitas(){
 
-        receitaDTOList = receitaBO.listarPessoas();
+        receitaDTOList = receitaBO.listarReceitas();
         if(receitaDTOList.isEmpty()) {
             MensagemUtil.addMsgOk(ListarReceitaActivity.this, getString(R.string.lbl_principal_listar),getString(R.string.msg_listar_receita_nenhuma_receita_encontrada), R.drawable.about);
         }else{

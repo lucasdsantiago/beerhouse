@@ -19,6 +19,12 @@ public class ABVBO {
         this.context = context;
     }
 
+    /**
+     * Metodo que verifica se os campos estao preenchidos.
+     * @param diStr densidade inicial
+     * @param doStr densidade final
+     * @return retorna null quando a validacao esta OK.
+     */
     public String validarObrigatoriedadeCampos(String diStr, String doStr){
         if(diStr.isEmpty()) {
            return context.getString(R.string.msg_abv_obrigatorio_di);
@@ -30,6 +36,13 @@ public class ABVBO {
         return null;
     }
 
+    /**
+     * Metodo que verifica regras funcionais quanto aos valores informados
+     * no di e df.
+     * @param di densidade inicial
+     * @param df densidade final
+     * @return retorna null quando a validacao esta OK.
+     */
     public String validarCampos(BigDecimal di, BigDecimal df){
 
         if (df.compareTo(di) >= 0) {
@@ -42,6 +55,12 @@ public class ABVBO {
         return null;
     }
 
+    /**
+     * Metodo que calcula o teor alcoolico atraves do di e df.
+     * @param di densidade inicial
+     * @param df densidade final
+     * @return retorna o valor do teor alcoolico (ABV)
+     */
     public BigDecimal calculaValorABV(BigDecimal di, BigDecimal df){
         return (di.subtract(df).multiply(new BigDecimal(131))).setScale(3, RoundingMode.UP);
     }

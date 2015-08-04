@@ -20,6 +20,10 @@ public class ReceitaOpenHelper extends SQLiteOpenHelper {
 		super(context, Constantes.DB_CONFIG_NOME, null, Integer.parseInt(Constantes.DB_CONFIG_VERSAO));
 	}
 
+	/**
+	 * Cria o a tabela Receita caso não exista.
+	 * @param db
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		StringBuilder sql = new StringBuilder();
@@ -36,6 +40,10 @@ public class ReceitaOpenHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Insere a receita no banco de dados.
+	 * @param receitaDTO
+	 */
 	public void cadastrar(ReceitaDTO receitaDTO) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -47,6 +55,9 @@ public class ReceitaOpenHelper extends SQLiteOpenHelper {
 		db.insert("TB_RECEITA", null, values);
 	}
 
+	/**
+	 * @return retorna as receitas cadastrada no banco de dados.
+	 */
 	public List<ReceitaDTO> listar() {
 		List<ReceitaDTO> lista = new ArrayList<>();
 		SQLiteDatabase db = this.getReadableDatabase();

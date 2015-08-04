@@ -74,6 +74,13 @@ public class CadastrarReceitaActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Método que cadastra a receita no banco de dados atraves da classe de
+     * negocio ReceitaBO.
+     *
+     * Apos o cadastro a activity eh finalizada.
+     * @param view
+     */
     public void cadastrarReceita(View view){
 
         String nome = edtNome.getText().toString();
